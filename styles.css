@@ -1,0 +1,563 @@
+/* ============================================
+   Design Talk 2026 — Styles
+   ============================================ */
+
+/* --- Font Faces --- */
+@font-face {
+  font-family: 'Raisonne Pro';
+  src: url('fonts/RaisonnePro-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raisonne Pro';
+  src: url('fonts/RaisonnePro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raisonne Pro';
+  src: url('fonts/RaisonnePro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url('fonts/Apercu Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url('fonts/Apercu Regular_0.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Design Tokens --- */
+:root {
+  --bg-white: #FDFCFD;
+  --bg-dark: #000000;
+  --bg-light-grey: #F0F0F0;
+  --green-dark: #69D387;
+  --green-light: #3DE16B;
+  --text-black: #181716;
+  --text-cream: #EBEACF;
+
+  --font-heading: 'Raisonne Pro', 'Helvetica Neue', sans-serif;
+  --font-body: 'Apercu', 'Helvetica Neue', sans-serif;
+
+  --ease-slide: cubic-bezier(0.4, 0, 0, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-content: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-slide: 0.7s;
+  --duration-content: 0.6s;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--text-black);
+  background: var(--bg-dark);
+}
+
+/* --- Typography --- */
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1.1;
+}
+
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.15;
+}
+
+p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.4;
+}
+
+.small-caps {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* --- Slide Container --- */
+.slides-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  will-change: transform;
+  transition: transform var(--duration-slide) var(--ease-slide);
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* --- Animated Elements (content reveals) --- */
+.anim {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-content) var(--ease-content),
+              transform var(--duration-content) var(--ease-content);
+}
+
+.anim.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-scale {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity var(--duration-content) var(--ease-content),
+              transform var(--duration-content) var(--ease-content);
+}
+
+.anim-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.anim-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity var(--duration-content) var(--ease-content),
+              transform var(--duration-content) var(--ease-content);
+}
+
+.anim-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity var(--duration-content) var(--ease-content),
+              transform var(--duration-content) var(--ease-content);
+}
+
+.anim-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- dotLottie Background --- */
+.lottie-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* ============================================
+   SLIDE 1: Intro (dark)
+   ============================================ */
+.slide-intro {
+  background: var(--bg-dark);
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px;
+  position: relative;
+}
+
+.slide-intro h1 {
+  color: var(--green-light);
+  max-width: 900px;
+}
+
+.slide-intro .subtitle {
+  color: var(--text-cream);
+  margin-top: 24px;
+  max-width: 700px;
+}
+
+.slide-intro .bottom-row {
+  position: absolute;
+  bottom: 60px;
+  left: 100px;
+  right: 100px;
+  display: flex;
+  gap: 40px;
+}
+
+.slide-intro .bottom-row .small-caps {
+  color: var(--text-cream);
+  opacity: 0.6;
+}
+
+/* ============================================
+   SLIDE 2: Content (light, 2-column)
+   ============================================ */
+.slide-content {
+  background: var(--bg-light-grey);
+  align-items: center;
+  padding: 80px 100px;
+  gap: 80px;
+}
+
+.slide-content .text-col {
+  flex: 1;
+  max-width: 500px;
+}
+
+.slide-content .text-col h3 {
+  color: var(--text-black);
+}
+
+.slide-content .text-col h4 {
+  color: var(--text-black);
+  opacity: 0.7;
+  margin-top: 12px;
+}
+
+.slide-content .text-col p {
+  color: var(--text-black);
+  margin-top: 28px;
+  opacity: 0.85;
+}
+
+.slide-content .image-col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content .image-col .image-placeholder {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 4/3;
+  background: #D9D9D9;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 16px;
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   SLIDE 3: Chapter (dark + animated)
+   ============================================ */
+.slide-chapter {
+  background: var(--bg-dark);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.slide-chapter .chapter-number {
+  position: absolute;
+  top: 60px;
+  left: 100px;
+  color: var(--text-cream);
+  opacity: 0.4;
+}
+
+.slide-chapter h2 {
+  color: var(--green-light);
+  max-width: 800px;
+}
+
+.slide-chapter .subtitle {
+  color: var(--text-cream);
+  margin-top: 20px;
+  max-width: 600px;
+  opacity: 0.75;
+}
+
+/* ============================================
+   SLIDE 4: Graphics Light
+   ============================================ */
+.slide-graphics-light {
+  background: var(--bg-white);
+  flex-direction: column;
+  padding: 80px 100px;
+}
+
+.slide-graphics-light h3 {
+  color: var(--text-black);
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.slide-graphics-light .graphics-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 0;
+}
+
+.slide-graphics-light .graphic-item {
+  background: #E8E8E8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  font-family: var(--font-body);
+}
+
+.slide-graphics-light .graphic-item.large {
+  width: 700px;
+  height: 420px;
+}
+
+.slide-graphics-light .graphic-item.medium {
+  width: 340px;
+  height: 420px;
+}
+
+.slide-graphics-light .caption-row {
+  display: flex;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.slide-graphics-light .caption-row .small-caps {
+  color: var(--text-black);
+  opacity: 0.5;
+}
+
+/* ============================================
+   SLIDE 5: Graphics Dark
+   ============================================ */
+.slide-graphics-dark {
+  background: var(--text-black);
+  flex-direction: column;
+  padding: 80px 100px;
+}
+
+.slide-graphics-dark h3 {
+  color: var(--text-cream);
+  font-weight: 400;
+}
+
+.slide-graphics-dark .graphics-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 0;
+}
+
+.slide-graphics-dark .graphic-item {
+  background: #2A2A28;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 14px;
+  font-family: var(--font-body);
+}
+
+.slide-graphics-dark .graphic-item.phone {
+  width: 260px;
+  height: 520px;
+  border-radius: 32px;
+}
+
+.slide-graphics-dark .graphic-item.large {
+  width: 700px;
+  height: 420px;
+}
+
+/* ============================================
+   SLIDE 6: Ending (dark)
+   ============================================ */
+.slide-ending {
+  background: var(--bg-dark);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.slide-ending h1 {
+  color: var(--green-light);
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+.slide-ending .subtitle {
+  color: var(--text-cream);
+  margin-top: 24px;
+  opacity: 0.8;
+}
+
+.slide-ending .contact-row {
+  position: absolute;
+  bottom: 60px;
+  left: 100px;
+  right: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+}
+
+.slide-ending .contact-row .small-caps {
+  color: var(--text-cream);
+  opacity: 0.5;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 0px transparent;
+  }
+  50% {
+    opacity: 0.92;
+    text-shadow: 0 0 40px rgba(61, 225, 107, 0.3);
+  }
+}
+
+/* ============================================
+   Navigation Dots
+   ============================================ */
+.nav-dots {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-smooth);
+}
+
+.nav-dots.visible {
+  opacity: 1;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.3s var(--ease-smooth),
+              transform 0.3s var(--ease-smooth);
+  position: relative;
+}
+
+.nav-dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.3);
+}
+
+.nav-dot.active {
+  background: var(--green-light);
+  transform: scale(1.2);
+}
+
+.nav-dot .tooltip {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--text-cream);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease-smooth);
+}
+
+.nav-dot:hover .tooltip {
+  opacity: 1;
+}
+
+/* Light slide adjustment for dots */
+body.light-slide .nav-dot {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+body.light-slide .nav-dot:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+body.light-slide .nav-dot.active {
+  background: var(--green-dark);
+}
+
+body.light-slide .nav-dot .tooltip {
+  background: rgba(24, 23, 22, 0.9);
+}

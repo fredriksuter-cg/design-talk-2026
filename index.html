@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Talk 2026 — Fredrik &amp; Oskar</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+<body>
+
+  <!-- ====== SLIDES ====== -->
+  <div class="slides-wrapper" id="slidesWrapper">
+
+    <!-- SLIDE 1: Intro -->
+    <div class="slide slide-intro" data-label="Intro" data-theme="dark">
+      <div class="lottie-bg">
+        <dotlottie-player
+          src="https://framerusercontent.com/modules/assets/5IMErgEf7IfKCww5oQiPMPdgWc~hvu2tcckRk2CqWWLzjnP8Qn4HBfZL5eHiDwYMMeR2VU.zip"
+          background="rgba(24, 23, 22, 255)"
+          speed="1"
+          loop
+          autoplay>
+        </dotlottie-player>
+      </div>
+      <h1 class="anim">Designing for<br>real people.</h1>
+      <p class="subtitle anim" style="transition-delay: 0.1s">A conversation about human-centered design, craft, and the details that matter.</p>
+      <div class="bottom-row">
+        <span class="small-caps anim" style="transition-delay: 0.2s">Fredrik Suter</span>
+        <span class="small-caps anim" style="transition-delay: 0.25s">Oskar Lindén</span>
+        <span class="small-caps anim" style="transition-delay: 0.3s">Design Talk 2026</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Content -->
+    <div class="slide slide-content" data-label="About Us" data-theme="light">
+      <div class="text-col">
+        <h3 class="anim-left">Who we are</h3>
+        <h4 class="anim-left" style="transition-delay: 0.08s">Designers, makers, thinkers</h4>
+        <p class="anim-left" style="transition-delay: 0.16s">
+          We believe great design lives in the intersection of empathy and precision.
+          Every pixel carries intent. Every interaction tells a story.
+          This talk is about the philosophy and practice behind the work.
+        </p>
+      </div>
+      <div class="image-col">
+        <div class="image-placeholder anim-right">Image placeholder</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Chapter -->
+    <div class="slide slide-chapter" data-label="Chapter 1" data-theme="dark">
+      <div class="lottie-bg">
+        <dotlottie-player
+          src="https://framerusercontent.com/modules/assets/5IMErgEf7IfKCww5oQiPMPdgWc~hvu2tcckRk2CqWWLzjnP8Qn4HBfZL5eHiDwYMMeR2VU.zip"
+          background="rgba(24, 23, 22, 255)"
+          speed="1"
+          loop
+          autoplay>
+        </dotlottie-player>
+      </div>
+      <span class="small-caps chapter-number anim">Chapter 01</span>
+      <h2 class="anim-scale">The craft of<br>digital design</h2>
+      <p class="subtitle anim" style="transition-delay: 0.12s">Why details define the experience</p>
+    </div>
+
+    <!-- SLIDE 4: Graphics Light -->
+    <div class="slide slide-graphics-light" data-label="Case Study" data-theme="light">
+      <h3 class="anim">For employers — From ad to match</h3>
+      <div class="graphics-area">
+        <div class="graphic-item large anim-scale" style="transition-delay: 0.1s">Screenshot placeholder</div>
+        <div class="graphic-item medium anim-scale" style="transition-delay: 0.2s">Detail view</div>
+      </div>
+      <div class="caption-row">
+        <span class="small-caps anim" style="transition-delay: 0.3s">Desktop experience</span>
+        <span class="small-caps anim" style="transition-delay: 0.35s">Responsive detail</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Graphics Dark -->
+    <div class="slide slide-graphics-dark" data-label="Dark Showcase" data-theme="dark">
+      <h3 class="anim">Mobile experience</h3>
+      <div class="graphics-area">
+        <div class="graphic-item phone anim-scale" style="transition-delay: 0.1s">Phone mockup</div>
+        <div class="graphic-item phone anim-scale" style="transition-delay: 0.2s">Phone mockup</div>
+        <div class="graphic-item phone anim-scale" style="transition-delay: 0.3s">Phone mockup</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Ending -->
+    <div class="slide slide-ending" data-label="End" data-theme="dark">
+      <div class="lottie-bg">
+        <dotlottie-player
+          src="https://framerusercontent.com/modules/assets/5IMErgEf7IfKCww5oQiPMPdgWc~hvu2tcckRk2CqWWLzjnP8Qn4HBfZL5eHiDwYMMeR2VU.zip"
+          background="rgba(24, 23, 22, 255)"
+          speed="1"
+          loop
+          autoplay>
+        </dotlottie-player>
+      </div>
+      <h1 class="anim">The end.</h1>
+      <h2 class="subtitle anim" style="transition-delay: 0.12s">Thank you for listening.</h2>
+      <div class="contact-row">
+        <span class="small-caps anim" style="transition-delay: 0.2s">fredrik@suterstudios.com</span>
+        <span class="small-caps anim" style="transition-delay: 0.25s">oskar@example.com</span>
+        <span class="small-caps anim" style="transition-delay: 0.3s">@designtalk2026</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====== NAV DOTS ====== -->
+  <nav class="nav-dots" id="navDots"></nav>
+
+  <!-- ====== SLIDE ENGINE ====== -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* --- State --- */
+    const wrapper = document.getElementById('slidesWrapper');
+    const slides = Array.from(wrapper.querySelectorAll('.slide'));
+    const navDotsContainer = document.getElementById('navDots');
+    const totalSlides = slides.length;
+    let current = 0;
+    let isAnimating = false;
+    let hideDotsTimer = null;
+
+    /* --- Position slides vertically --- */
+    slides.forEach((slide, i) => {
+      slide.style.top = `${i * 100}vh`;
+    });
+
+    /* --- Build nav dots --- */
+    slides.forEach((slide, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+      dot.dataset.index = i;
+
+      const tooltip = document.createElement('span');
+      tooltip.className = 'tooltip';
+      tooltip.textContent = slide.dataset.label || `Slide ${i + 1}`;
+      dot.appendChild(tooltip);
+
+      dot.addEventListener('click', () => goTo(i));
+      navDotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(navDotsContainer.querySelectorAll('.nav-dot'));
+
+    /* --- Slide transition (CSS-driven) --- */
+    const TRANSITION_MS = 700;
+
+    wrapper.addEventListener('transitionend', () => {
+      isAnimating = false;
+    });
+
+    function goTo(index) {
+      if (index < 0 || index >= totalSlides || index === current) return;
+
+      exitSlide(current);
+
+      current = index;
+      isAnimating = true;
+
+      wrapper.style.transform = `translateY(${-current * window.innerHeight}px)`;
+
+      updateDots();
+      updateTheme();
+
+      setTimeout(() => enterSlide(current), TRANSITION_MS * 0.4);
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    /* --- Content enter/exit animations --- */
+    function enterSlide(index) {
+      const slide = slides[index];
+      const anims = slide.querySelectorAll('.anim, .anim-scale, .anim-left, .anim-right');
+      anims.forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 70);
+      });
+    }
+
+    function exitSlide(index) {
+      const slide = slides[index];
+      const anims = slide.querySelectorAll('.anim, .anim-scale, .anim-left, .anim-right');
+      anims.forEach(el => el.classList.remove('visible'));
+    }
+
+    /* --- Update nav dots --- */
+    function updateDots() {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === current);
+      });
+    }
+
+    /* --- Update body theme class (for dot color adaptation) --- */
+    function updateTheme() {
+      const theme = slides[current].dataset.theme;
+      document.body.classList.toggle('light-slide', theme === 'light');
+    }
+
+    /* --- Show/hide nav dots on mouse move --- */
+    function showDots() {
+      navDotsContainer.classList.add('visible');
+      clearTimeout(hideDotsTimer);
+      hideDotsTimer = setTimeout(() => {
+        navDotsContainer.classList.remove('visible');
+      }, 2000);
+    }
+
+    document.addEventListener('mousemove', showDots);
+
+    /* --- Keyboard navigation --- */
+    document.addEventListener('keydown', (e) => {
+      if (isAnimating) return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+        case 'ArrowRight':
+        case ' ':
+          e.preventDefault();
+          next();
+          break;
+        case 'ArrowUp':
+        case 'ArrowLeft':
+          e.preventDefault();
+          prev();
+          break;
+        case 'Home':
+          e.preventDefault();
+          goTo(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          goTo(totalSlides - 1);
+          break;
+      }
+    });
+
+    /* --- Wheel navigation (debounced) --- */
+    let wheelCooldown = false;
+    document.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (isAnimating || wheelCooldown) return;
+
+      wheelCooldown = true;
+      setTimeout(() => { wheelCooldown = false; }, 800);
+
+      if (e.deltaY > 30) next();
+      else if (e.deltaY < -30) prev();
+    }, { passive: false });
+
+    /* --- Touch navigation --- */
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (isAnimating) return;
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? next() : prev();
+      }
+    }, { passive: true });
+
+    /* --- Handle resize --- */
+    window.addEventListener('resize', () => {
+      wrapper.style.transition = 'none';
+      wrapper.style.transform = `translateY(${-current * window.innerHeight}px)`;
+      requestAnimationFrame(() => { wrapper.style.transition = ''; });
+    });
+
+    /* --- Init: enter first slide --- */
+    updateTheme();
+    setTimeout(() => enterSlide(0), 300);
+    showDots();
+
+  })();
+  </script>
+
+</body>
+</html>
